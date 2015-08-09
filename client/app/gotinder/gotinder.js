@@ -9,7 +9,21 @@ angular.module('jtinderApp').service('gotinder',['$http','$rootScope', function(
     };
 
     this.auth = function(){
-        return $http.post(rel("/auth"));
+        var options = {
+            method: "POST",
+            url: rel("auth"),
+            header: {
+                "Content-type": "application/json",
+                "User-Agent": "Tinder/3.0.4 (iPhone; iOS 7.1; Scale/2.00)",
+                "Access-Control-Allow-Origin": "*"
+            },
+            data: JSON.stringify({
+                "facebook_token": $rootScope.facebook.token,
+                "facebook_id": $rootScope.facebook.id
+            })
+        };
+        console.log(options);
+        return $http(options);
     };
 
 }]);

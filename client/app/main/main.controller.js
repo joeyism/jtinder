@@ -10,6 +10,7 @@ angular.module('jtinderApp')
 
 
     function statusChangeCallback(response) {
+        console.log(response);
         $rootScope.facebook = {
             token: response.authResponse.accessToken,
             id: response.authResponse.userID
@@ -85,7 +86,7 @@ angular.module('jtinderApp')
             console.log('Successful login for: ' + response.name);
             document.getElementById('status').innerHTML =
                 'Thanks for logging in, ' + response.name + '!';
-            $state.go('');
+            $state.go('home');
         });
     }
 
